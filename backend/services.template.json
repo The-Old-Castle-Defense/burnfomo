@@ -1,0 +1,15 @@
+{
+  "secret_key": "",
+  "port": 9999,
+  "mongo":
+  {
+    "connectionString": "mongodb://localhost:27017/burnfomo"
+  },
+  "telegram":
+  {
+    "bot_token":"TAKE_TOKEN_FROM_BOT_FATHER",
+    "log_channel":"",
+    "stats_channel": "",
+    "groups": [{"lang":"ru", "id": ""}, {"lang": "en", "id": ""}]
+  }
+}
