@@ -12,7 +12,7 @@ To deploy the `burnfomo_tracker.py` script with `crontab`, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone [https://github.com/your-repo/burnfomo-tracker.git](https://github.com/The-Old-Castle-Defense/burnfomo.git)
+   git clone https://github.com/The-Old-Castle-Defense/burnfomo.git
    cd burnfomo-tracker
    ```
 
@@ -41,7 +41,7 @@ To deploy the FastAPI application using NGINX, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-repo/burnfomo-tracker.git
+   git clone https://github.com/The-Old-Castle-Defense/burnfomo.git
    cd burnfomo-tracker
    ```
 
