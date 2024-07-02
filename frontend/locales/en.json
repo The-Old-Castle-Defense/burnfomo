@@ -1,0 +1,82 @@
+{
+  "header": {
+    "faq": "FAQs",
+    "game": "Burn $FOMO"
+  },
+  "total_burned": {
+    "title": "Total $FOMO supply reduced by",
+    "body": "{totalBurnValue} $FOMO tokens have entered the void and will never re-enter the supply. The combined value of all tokens at the time of burning totaled ${totalBurnValueInUSD}. Average burn size: {average_burn_size} per $FOMO."
+  },
+  "rate": {
+    "title": "$FOMO Price",
+    "last_updated": "Last updated"
+  },
+  "latest_burn_details": {
+    "title": "Latest Burn Details",
+    "subtitle": "The last burn happened on",
+    "body": "In the most recent burn, a total of {totalTokensBurned} $FOMO tokens were burned. At the time of this burn, the cumulative value of the burned $FOMO amounted to $${totalTokensBurnedUSD}.",
+    "body2": "This burn was triggered by"
+  },
+  "line_chart": {
+    "title": "$FOMO Supply Over Time"
+  },
+  "burn_details": {
+    "title" : "Burn Details",
+    "table": {
+      "title_1": "Tokens Burned",
+      "title_3": "Transaction Details",
+      "title_4": "Burn Triggered By"
+    }
+  },
+  "top_5_burn" : {
+    "title": "Top 5 Burn Triggered by Wallets",
+    "table": {
+      "title_2": "Burner",
+      "title_3": "Count",
+      "title_4": "Total USD",
+      "title_5": "Total $FOMO"
+    }
+  },
+  "fomo_burn_emotion": {
+    "make_happy": "Make happy",
+    "make_happy_board_part_1": "You can",
+    "make_happy_board_part_2": "burn $FOMO within the Game",
+    "make_happy_board_part_3": "to make $FOMO happier and invoke eternal growth, or simply for fun"
+  },
+  "upcoming_buybacks": {
+    "title": "Upcoming Buybacks"
+  },
+  "upcoming_burns": {
+    "title": "Upcoming Burns"
+  },
+  "buy_fomo": "Buy $FOMO",
+  "faq": {
+    "title": "FAQs",
+    "questions": [
+      {
+        "question": "Why are $FOMO tokens burned?",
+        "answer": "Burning $FOMO tokens helps reduce the total supply, which can increase the value of the remaining tokens and benefit all holders."
+      },
+      {
+        "question": "What are the sources of tokens that are burned?",
+        "answer": "Tokens are burned from various sources including transaction fees, staking rewards, and unused tokens."
+      },
+      {
+        "question": "How do $FOMO token burns occur?",
+        "answer": "Burns occur by calling the burn() function on the $FOMO Burn Contract, which permanently removes the specified amount of tokens from circulation."
+      },
+      {
+        "question": "How does burning $FOMO tokens benefit the community?",
+        "answer": "Burning tokens reduces supply, which can increase demand and value, benefiting token holders and supporting a healthier economy."
+      },
+      {
+        "question": "Are $FOMO token burns a regular occurrence?",
+        "answer": "Yes, $FOMO token burns are scheduled regularly to maintain a balanced supply and demand dynamic."
+      },
+      {
+        "question": "What effects do $FOMO token burns have on the market?",
+        "answer": "Burning tokens generally leads to a decrease in supply, which can drive up the price if demand remains constant or increases."
+      }
+    ]
+  }
+}

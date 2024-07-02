@@ -1,0 +1,117 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 820px;
+  margin: 0 auto;
+  .accordion-item {
+    padding: 20px 30px;
+    border-radius: 8px;
+    background: $board-color;
+    & a{
+      text-decoration: underline;
+      word-break: break-all;
+    }
+  }
+  & .accordion-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    &:hover,
+    &:focus {
+      & .icon{
+        background: $rose-color;
+      }
+      cursor: pointer;
+    }
+  }
+  button {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+
+    .icon {
+      position: relative;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      background: $blue-color-100;
+      border-radius: 50%;
+      transition: .5s all;
+      &::before {
+        display: block;
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 18px;
+        height: 2px;
+        background: #fff;
+      }
+      &::after {
+        display: block;
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 2px;
+        height: 18px;
+        background: #fff;
+      }
+    }
+  }
+  .accordion-btn._active {
+    color: #fff;
+    .icon {
+      transform: rotate(45deg);
+    }
+    + .accordion-content {
+      opacity: 1;
+      height: max-content;
+      visibility: visible;
+      margin-top: 30px;
+    }
+  }
+  .accordion-content {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    transition: all 100ms linear;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: $gray-color-100;
+  }
+}
+.accordion-title {
+  padding: 10px 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 767px) {
+  .accordion button .icon{
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    &:before{
+      width: 14px;
+    }
+    &:after{
+      height: 14px;
+    }
+  }
+}

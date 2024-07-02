@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "server": "HOST=0 npm run dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/i18n": "^8.3.1",
+    "@pinia/nuxt": "^0.5.1",
+    "chart.js": "^4.4.3",
+    "nuxt": "^3.12.2",
+    "pinia": "^2.1.7",
+    "sass": "^1.77.6",
+    "vue": "latest",
+    "vue-awesome-paginate": "^1.2.0",
+    "vue-chartjs": "^5.3.1",
+    "web3": "^4.10.0"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
+}

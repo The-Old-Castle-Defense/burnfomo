@@ -1,0 +1,157 @@
+.table {
+  color: #fff;
+  margin: 0 auto;
+  border-radius: 10px;
+  width: 100%;
+}
+.table__row {
+  width: 100%;
+  min-height: 75px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 15px;
+  &_header{
+    min-height: 50px;
+  }
+}
+
+.table__row_body {
+  border-bottom: 1px solid #3D3D5D;
+  cursor: default;
+  &._active{
+    background: rgba($rose-color,.2);
+    &:hover{
+      background: rgba($rose-color,.3);
+    }
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+.table .table__row_body{
+  & .row-item{
+    display: flex;
+    &:last-child{
+      justify-content: flex-end;
+    }
+  }
+}
+.table__row_body--pointer {
+  cursor: pointer;
+  &:hover{
+    background: rgba(196, 196, 196, 0.15);
+  }
+}
+.table__row_header {
+  border-bottom: 1px solid #3D3D5D;
+}
+.table__row_header .row-item {
+  font-size: 12px;
+  font-weight: 500;
+  color: $gray-color-200;
+}
+.table .table__row_header .row-item{
+  display: flex;
+  &:last-child{
+    justify-content: flex-end;
+  }
+}
+
+.row-item {
+  display: flex;
+  flex: 1;
+  //overflow: hidden;
+  margin: 0 5px;
+  text-align: start;
+  font-size: 14px;
+  position: relative;
+  @for $i from 1 through 40 {
+    &--#{$i * 10} {
+      flex: calc($i / 10);
+    }
+  }
+
+
+  & a {
+    color: #fff;
+    transition: 0.3s;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: 1px solid #fff;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .table.table--response {
+    .table__row {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .table__row:first-child {
+      margin-bottom: 0;
+    }
+
+    .table__row_body {
+      border-radius: 10px;
+      background: rgba(196, 196, 196, 0.15);
+      border-bottom: none;
+      margin: 10px 0;
+      &._active{
+        background: rgba(217, 0, 210, 0.2);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .table__row_header .row-item {
+      font-weight: 700;
+    }
+
+    .row-item:last-child {
+      border-bottom: none;
+    }
+
+    .row-item::before {
+      content: attr(data-title);
+      position: absolute;
+      left: 10px;
+      font-size: 13px;
+      color: hsla(0, 0%, 100%, 0.7);
+      text-align: left;
+      font-weight: 700;
+      opacity: 0.5;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .table__row.table__row_header {
+      display: none;
+    }
+
+    .row-item {
+      padding: 10px 0;
+      display: flex;
+      width: 100%;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+      text-align: right;
+      border-bottom: 1px solid rgba($gray-color-100, 0.1);
+      &[data-title="Address"], &[data-title="User address"]  {
+        & > div{
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
