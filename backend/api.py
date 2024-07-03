@@ -5,6 +5,10 @@ from config import bot
 from fastapi import FastAPI
 from pymongo import MongoClient
 import datetime 
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, RedirectResponse
+from starlette.middleware.sessions import SessionMiddleware
 
 
 
@@ -23,6 +27,21 @@ app = FastAPI(
     docs_url="/api/docs",
 )
 
+#ORIGINS = ['devnet-api.theoldcastle.xyz', 'api.theoldcastle.xyz', 'theoldcastle.xyz',  "127.0.0.1", "0.0.0.0", "localhost:3000", "14.165.132.112"]
+#app.add_middleware(
+#    TrustedHostMiddleware,
+#    allowed_hosts=ORIGINS
+#)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  # include additional methods as per the application demand
+    allow_headers=["Content-Type", "Set-Cookie"]  # include additional headers as per the application demand
+)
+
 # MongoDB setup
 config.init_config()
 db.connect_to_database(path=config.connectionString)
@@ -33,16 +52,45 @@ def fetch_and_calculate_statistics():
     total_fomo_supply_reduced = float(latest_stats["total_supply_reduced"])
 
     # Calculate the circulating supply over time
-    chart_data = []
+    chart_data = [{"date": f"2024-04-{5*x+1 if int(5*x+1) > 9 else '0' + str(5*x+1)}T00:00:00", "circulating_supply":"100000000000000000000000000"} for x in range(5)]
     circulating_supply = int(float(latest_stats['total_supply']))
+    interval_start = None
+    interval_burn = 0
     burn_transactions = db.db.txs.find({"type": "burn"}).sort("timestamp", 1)
+    
     for tx in burn_transactions:
         burn_amount = int(tx["value"])
-        circulating_supply -= burn_amount
+        tx_timestamp = int(tx['timestamp'])
+        
+        if interval_start is None:
+            interval_start = tx_timestamp
+        
+        if tx_timestamp >= (interval_start + 43200):
+            circulating_supply -= interval_burn
+            chart_data.append({
+                "date": datetime.datetime.utcfromtimestamp(interval_start).isoformat(),
+                "circulating_supply": str(circulating_supply)
+            })
+            interval_start = tx_timestamp
+            interval_burn = burn_amount
+        else:
+            interval_burn += burn_amount
+    
+    # Final interval
+    if interval_burn > 0:
+        circulating_supply -= interval_burn
         chart_data.append({
-            "date": datetime.datetime.fromtimestamp(tx["timestamp"]).isoformat(),
+            "date": datetime.datetime.utcfromtimestamp(interval_start).isoformat(),
             "circulating_supply": str(circulating_supply)
         })
+    #burn_transactions = db.db.txs.find({"type": "burn"}).sort("timestamp", 1)
+    #for tx in burn_transactions:
+    #    burn_amount = int(tx["value"])
+    #    circulating_supply -= burn_amount
+    #    chart_data.append({
+    #        "date": datetime.datetime.fromtimestamp(tx["timestamp"]).isoformat(),
+    #        "circulating_supply": str(circulating_supply)
+    #    })
 
     # Fetch and process top wallets manually
     raw_top_wallets = list(db.db.txs.find({"type": "burn"}))
@@ -55,11 +103,11 @@ def fetch_and_calculate_statistics():
         wallets[from_address]['totals'] += value
         wallets[from_address]['count'] += 1
 
-    top_wallets = sorted(wallets.items(), key=lambda x: x[1]['totals'], reverse=True)[:5]
+    top_wallets = sorted(wallets.items(), key=lambda x: x[1]['totals'], reverse=True)[:7]
     top_wallets = [{"_id": k, "total_burned": str(v["totals"]), "burn_count": v["count"]} for k, v in top_wallets]
 
     burn_details = []
-    for tx in db.db.txs.find({"type": "burn"}).sort("height", -1).limit(50):
+    for tx in db.db.txs.find({"type": "burn"}).sort("height", -1).limit(100):
         burn_details.append({
             "tokens_burned": str(tx["value"]),
             "tokens_burned_usd": str(tx["value_usd"]),
@@ -68,6 +116,18 @@ def fetch_and_calculate_statistics():
             "height": tx["height"],
             "timestamp": tx['timestamp'],
         })
+
+    big_burn_details = []
+    for tx in db.db.txs.find({"type": "burn", "value_usd": {"$gt": 10}}).sort("height", -1).limit(100):
+        big_burn_details.append({
+            "tokens_burned": str(tx["value"]),
+            "tokens_burned_usd": str(tx["value_usd"]),
+            "transaction_details": tx["tx_hash"],
+            "burn_triggered_by": tx["from_address"],
+            "height": tx["height"],
+            "timestamp": tx['timestamp'],
+        })
+
 
     biggest_burn = max(db.db.txs.find({"type": "burn"}), key=lambda x: int(x["value"]))
     biggest_burn_amount = int(biggest_burn["value"])
@@ -82,6 +142,8 @@ def fetch_and_calculate_statistics():
         "fomo_total_supply_chart": chart_data,
         "top_5_burn_triggered_by_wallets": top_wallets,
         "burn_details": burn_details,
+        "big_burn_details": big_burn_details,
+        "circulating_supply": str(circulating_supply),
         "burn_statistics": {
             "biggest_burn": {
                 "amount": str(biggest_burn_amount),
