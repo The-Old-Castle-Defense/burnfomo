@@ -53,7 +53,6 @@ const emotionNumber = computed(() => {
 </script>
 
 <style lang="scss">
-@import "~/assets/styles/vars";
 .make-happy {
   position: absolute;
   bottom: 30px;

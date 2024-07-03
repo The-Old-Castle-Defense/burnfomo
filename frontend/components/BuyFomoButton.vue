@@ -13,7 +13,6 @@ const {t} = useI18n()
 </script>
 
 <style lang="scss">
-@import '/assets/styles/vars';
 .btn {
   border-radius: 7px;
   padding: 12px 24px;
