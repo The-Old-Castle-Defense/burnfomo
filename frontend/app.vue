@@ -29,7 +29,7 @@
                 FOMO/WETH
               </div>
             </div>
-            <div class="last_updated">
+            <div class="board__bottom">
               {{t('rate.last_updated')}}: {{state.fetchRateLastUpdate === 0 ? 'a few seconds ago' : ` a ${state.fetchRateLastUpdate} minutes ago`}}
             </div>
           </div>
@@ -84,7 +84,9 @@
 
         <div class="board-wrapper board-wrapper--tables mt-20">
           <div class="board">
-            <div class="board__header board__header--small">{{t('burn_details.title')}}</div>
+            <div class="board__header board__header--small">
+              {{t('burn_details.title')}}
+            </div>
             <BurnDetailsTable
                 :burn_details="allStatistics?.burn_details"
                 :totalSupply="totalSupply"
@@ -98,6 +100,49 @@
                 :top_5_burn="allStatistics?.top_5_burn_triggered_by_wallets"
                 :fomoRate="fomoRate"
             />
+          </div>
+        </div>
+        <h2 class="title mt-65">{{t('burn_statistics.title')}}</h2>
+        <div class="board-wrapper board-wrapper__burn-statistics mt-30">
+          <div class="board">
+            <div class="board__header board__header--small">
+              {{t('burn_statistics.board_1.title')}}
+            </div>
+            <div class="board__body mb-30">
+              <div class="rate flex align-center">
+                <FOMO/>
+                {{myToFixed(biggest_burn_value)}}
+              </div>
+              <p class="fs-14 gray-color-100 mt-10">
+                ${{myToFixed(biggest_burn_value * fomoRate)}}
+              </p>
+            </div>
+            <div class="board__bottom">
+              {{DateToRead(biggest_burn?.date, true)}}
+            </div>
+          </div>
+          <div class="board board--blue board--center">
+            <div class="board__header board__header--small">{{t('burn_statistics.board_2.title')}}</div>
+            <div class="board__body board__body--large board__body--white">
+              {{allStatistics?.burn_statistics?.burns_to_date}}
+            </div>
+            <div class="board__bottom">
+              {{t('burn_statistics.board_2.subtitle')}}
+            </div>
+          </div>
+          <div class="board">
+            <div class="board__header board__header--small">
+              {{t('burn_statistics.board_3.title')}}
+            </div>
+            <div class="board__body mb-30">
+              <div class="rate flex align-center">
+                <FOMO/>
+                {{myToFixed(average_burn_size)}}
+              </div>
+              <p class="fs-14 gray-color-100 mt-10">
+                ${{myToFixed(average_burn_size * fomoRate)}}
+              </p>
+            </div>
           </div>
         </div>
         <div class="section mt-65" id="faq">
@@ -121,8 +166,11 @@
 <script setup>
 import {useMain} from "~/stores/main";
 import {ref} from 'vue'
-import {Doughnut, Line} from 'vue-chartjs';
 import FOMO from "~/components/UIComponents/Icons/FOMO.vue";
+import FOMOBurnEmotion from "~/components/FOMOBurnEmotion.vue";
+import FAQ from "~/components/FAQ.vue";
+import {Doughnut, Line} from 'vue-chartjs';
+
 import {
   Chart as ChartJS,
   ArcElement,
@@ -134,9 +182,7 @@ import {
   Tooltip,
   Legend,
   Filler
-} from 'chart.js'
-import FOMOBurnEmotion from "~/components/FOMOBurnEmotion.vue";
-import FAQ from "~/components/FAQ.vue";
+} from 'chart.js';
 
 ChartJS.register(
     CategoryScale,
@@ -148,8 +194,41 @@ ChartJS.register(
     Legend,
     ArcElement,
     Filler
-)
+);
 
+const needlePlugin = {
+  id: 'needle',
+  afterDatasetDraw: (chart) => {
+    const needleValue = chart.config.options.needleValue;
+    if (needleValue !== undefined) {
+      const ctx = chart.ctx;
+      const chartArea = chart.chartArea;
+      const centerX = (chartArea.left + chartArea.right) / 2;
+      const centerY = chartArea.bottom - 3; // Позиционируем стрелку чуть выше
+      const angle = Math.PI + (Math.PI * needleValue / 100);
+      const needleLength = (chartArea.right - chartArea.left) / 2.5;
+      const needleWidth = 7;
+
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(angle);
+
+      // Рисуем стрелку с округлым основанием снаружи
+      ctx.beginPath();
+      ctx.moveTo(0, -needleWidth / 2); // Левая нижняя точка стрелки
+      ctx.lineTo(needleLength, 0); // Верхняя точка стрелки
+      ctx.lineTo(0, needleWidth / 2); // Правая нижняя точка стрелки
+      ctx.arc(0, 0, needleWidth / 2, Math.PI / 2, -Math.PI / 2, false); // Округлое основание стрелки снаружи
+      ctx.fillStyle = 'rgba(213, 213, 220, 1)';
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+};
+
+
+
+ChartJS.register(needlePlugin);
 
 const {state, myToFixed, getBurnStatistics, getFOMORate, setCookie, DateToRead, formatNumberToString, cropText, getBalances, getETHRate} = useMain();
 const {t, locale, messages} = useI18n()
@@ -171,20 +250,26 @@ const circulating_supply = computed(() => allStatistics.value?.circulating_suppl
 const total_burned_value = computed(() => totalSupply - circulating_supply.value)
 const average_burn_size = computed(() => allStatistics.value?.burn_statistics?.average_burn_size / 1e18)
 const last_burn_details = computed(() => allStatistics.value?.burn_details?.[0])
+const biggest_burn = computed(() => allStatistics.value?.burn_statistics?.biggest_burn)
+const biggest_burn_value = computed(() => biggest_burn.value?.amount / 1e18)
 
 const burn_color = '#D900D2'
 const supply_color = '#3B3390'
-const chartOptionsDoughnut = {
+
+
+const chartOptionsDoughnut = computed(() => ({
   rotation: -90,
   circumference: 180,
   responsive: true,
   maintainAspectRatio: false,
+  needleValue: totalBurnPercent.value,
+  needle: true,
   plugins: {
     legend: {
       display: false
     }
   }
-};
+}));
 
 const chartDataDoughnut = computed(() => ({
   labels: ['Burned', 'Circulating supply'],
@@ -224,23 +309,26 @@ const chartOptionsLine = {
       display: false
     },
     tooltip: {
+      enabled: true,
       mode: 'index',
       intersect: false,
       callbacks: {
         title: (tooltipItems) => {
-          return tooltipItems[0].label;
+          return `Supply: ${tooltipItems[0].raw.toLocaleString()}`;
         },
         label: (tooltipItem) => {
-          return `${tooltipItem.dataset.label}: ${tooltipItem.raw.toLocaleString()}`;
+          return `Date: ${tooltipItem.label}`;
         }
-      }
+      },
+      displayColors: false
     }
   }
 }
+
 const chartDataLine = computed(() => ({
   labels: allStatistics.value?.fomo_total_supply_chart?.map(item => DateToRead(item.date, true)) || [],
   datasets: [{
-    label: 'Circulating supply',
+    label: 'Supply',
     data: allStatistics.value?.fomo_total_supply_chart?.map(item => parseFloat(item.circulating_supply / 1e18)) || [],
     backgroundColor: 'rgba(92, 93, 151)',
     borderColor: 'rgb(92, 93, 151)',
@@ -248,6 +336,7 @@ const chartDataLine = computed(() => ({
     fill: 'origin'
   }]
 }));
+
 
 const messagesNews = ref([
   'The more $FOMO you have — the less FOMO you have',
@@ -266,10 +355,6 @@ onMounted(async () => {
   ERC20TokenBalance.value = erc20Balance;
 })
 
-const meta = {
-  title: "🔥FOMO Burn Tracker",
-  description: "Find out how much $FOMO is ready to get burned. Stay updated on future burns to see how they will affect the token supply and value."
-}
 
 const faqQuestions = computed(() => {
   const currentLocale = locale.value;
@@ -293,16 +378,23 @@ function parseQuestion(question) {
   return 'No question available';
 }
 
+const meta = {
+  title: "🔥FOMO Burn Tracker",
+  description: "Find out how much $FOMO is ready to get burned. Stay updated on future burns to see how they will affect the token supply and value.",
+  image: "/SEO-banner.png"
+}
+
+
 useHead({
   title: meta.title,
   meta: [
     { name: 'description', content: meta.description },
     {property: 'og:title', content: meta.title},
     {property: 'og:description', content: meta.description},
-    // {property: 'og:image', content: meta.image},
+    {property: 'og:image', content: meta.image},
     {name: 'twitter:title', content: meta.title},
     {name: 'twitter:description', content: meta.description},
-    // {name: 'twitter:image', content: meta.image}
+    {name: 'twitter:image', content: meta.image}
   ],
 })
 </script>

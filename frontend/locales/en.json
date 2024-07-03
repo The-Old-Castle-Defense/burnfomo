@@ -14,7 +14,7 @@
   "latest_burn_details": {
     "title": "Latest Burn Details",
     "subtitle": "The last burn happened on",
-    "body": "In the most recent burn, a total of {totalTokensBurned} $FOMO tokens were burned. At the time of this burn, the cumulative value of the burned $FOMO amounted to $${totalTokensBurnedUSD}.",
+    "body": "In the most recent burn, a total of {totalTokensBurned} $FOMO tokens were burned. At the time of this burn, the cumulative value of the burned $FOMO amounted to ${totalTokensBurnedUSD}.",
     "body2": "This burn was triggered by"
   },
   "line_chart": {
@@ -50,6 +50,19 @@
     "title": "Upcoming Burns"
   },
   "buy_fomo": "Buy $FOMO",
+  "burn_statistics": {
+    "title": "Burn Statistics",
+    "board_1": {
+      "title": "Biggest Burn"
+    },
+    "board_2": {
+      "title": "Burns to Date",
+      "subtitle": "Number of burns"
+    },
+    "board_3": {
+      "title": "Average Burn Size"
+    }
+  },
   "faq": {
     "title": "FAQs",
     "questions": [
