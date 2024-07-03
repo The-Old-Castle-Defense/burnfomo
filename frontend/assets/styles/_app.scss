@@ -55,6 +55,12 @@ body{
   flex: 1;
   max-width: 100%;
   position: relative;
+  &--blue{
+    background: linear-gradient(107deg, #005C97 0%, #363795 100%);
+  }
+  &--center{
+    align-items: center;
+  }
   &--image{
     flex: 0.3;
     background: #005C97;
@@ -90,18 +96,28 @@ body{
   font-weight: 400;
   line-height: 20px;
   margin-top: 20px;
+  color: $gray-color-100;
+  &--large{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 130%;
+  }
+  &--white{
+    color: #fff;
+  }
 }
 .chart-container{
   &--doughnut{
     margin-top: 30px;
-    max-width: 190px;
-    max-height: 120px;
+    width: 154px;
+    height: 78px;
   }
 }
 .rate{
   font-size: 24px;
   font-weight: 600;
   gap: 8px;
+  color: #fff;
 }
 .rate_pair{
   margin-top: 8px;
@@ -112,8 +128,9 @@ body{
 .align-center{
   align-items: center;
 }
-.last_updated{
+.board__bottom{
   margin-top: auto;
+  color: $gray-color-100;
 }
 .pointer{
   cursor: pointer;
@@ -187,6 +204,10 @@ a{
 
 @media (max-width: 1150px) {
   .board-wrapper{
+    &__burn-statistics{
+      display: grid;
+      
+    }
     &--upcoming{
       & .board{
         flex: 100%;
@@ -226,6 +247,11 @@ a{
   .board{
     & .upcoming-image{
       display: none;
+    }
+  }
+  .board-wrapper--tables{
+    & .board{
+      padding: 15px;
     }
   }
 }
