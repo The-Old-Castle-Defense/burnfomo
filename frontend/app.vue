@@ -279,7 +279,7 @@ const chartOptionsDoughnut = computed(() => ({
 }));
 
 const chartDataDoughnut = computed(() => ({
-  labels: ['Burned', 'Circulating supply'],
+  labels: ['Burned', 'Total supply'],
   datasets: [{
     data: [total_burned_value.value, totalSupply - total_burned_value.value],
     backgroundColor: [burn_color, supply_color],
