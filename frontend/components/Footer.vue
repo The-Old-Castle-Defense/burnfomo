@@ -8,7 +8,6 @@
 
 
 <style lang="scss">
-@import '~/assets/styles/vars';
 .footer{
   display: flex;
   align-items: center;

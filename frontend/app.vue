@@ -85,10 +85,19 @@
         <div class="board-wrapper board-wrapper--tables mt-20">
           <div class="board">
             <div class="board__header board__header--small">
-              {{t('burn_details.title')}}
+              <div class="flex align-center space-between">
+                {{t('burn_details.title')}}
+                <div class="checkbox-btn__items">
+                  <CheckBox
+                      @change="checkboxAction"
+                      :is-checked="isChecked"
+                      :text="'Only substantial Burns'"
+                  />
+                </div>
+              </div>
             </div>
             <BurnDetailsTable
-                :burn_details="allStatistics?.burn_details"
+                :burn_details="burnDetails"
                 :totalSupply="totalSupply"
                 :currentPage="currentPageBurnDetails"
                 @update:currentPage="updateCurrentPage"
@@ -183,6 +192,7 @@ import {
   Legend,
   Filler
 } from 'chart.js';
+import CheckBox from "~/components/UIComponents/CheckBox.vue";
 
 ChartJS.register(
     CategoryScale,
@@ -204,7 +214,7 @@ const needlePlugin = {
       const ctx = chart.ctx;
       const chartArea = chart.chartArea;
       const centerX = (chartArea.left + chartArea.right) / 2;
-      const centerY = chartArea.bottom - 3; // Позиционируем стрелку чуть выше
+      const centerY = chartArea.bottom - 3;
       const angle = Math.PI + (Math.PI * needleValue / 100);
       const needleLength = (chartArea.right - chartArea.left) / 2.5;
       const needleWidth = 7;
@@ -213,20 +223,17 @@ const needlePlugin = {
       ctx.translate(centerX, centerY);
       ctx.rotate(angle);
 
-      // Рисуем стрелку с округлым основанием снаружи
       ctx.beginPath();
-      ctx.moveTo(0, -needleWidth / 2); // Левая нижняя точка стрелки
-      ctx.lineTo(needleLength, 0); // Верхняя точка стрелки
-      ctx.lineTo(0, needleWidth / 2); // Правая нижняя точка стрелки
-      ctx.arc(0, 0, needleWidth / 2, Math.PI / 2, -Math.PI / 2, false); // Округлое основание стрелки снаружи
+      ctx.moveTo(0, -needleWidth / 2);
+      ctx.lineTo(needleLength, 0);
+      ctx.lineTo(0, needleWidth / 2);
+      ctx.arc(0, 0, needleWidth / 2, Math.PI / 2, -Math.PI / 2, false);
       ctx.fillStyle = 'rgba(213, 213, 220, 1)';
       ctx.fill();
       ctx.restore();
     }
   }
 };
-
-
 
 ChartJS.register(needlePlugin);
 
@@ -252,9 +259,9 @@ const average_burn_size = computed(() => allStatistics.value?.burn_statistics?.a
 const last_burn_details = computed(() => allStatistics.value?.burn_details?.[0])
 const biggest_burn = computed(() => allStatistics.value?.burn_statistics?.biggest_burn)
 const biggest_burn_value = computed(() => biggest_burn.value?.amount / 1e18)
-
 const burn_color = '#D900D2'
 const supply_color = '#3B3390'
+
 
 
 const chartOptionsDoughnut = computed(() => ({
@@ -345,6 +352,26 @@ const messagesNews = ref([
   'The more $FOMO you stake — the more $FOMO value'
 ]);
 
+
+const burnDetailsOriginal = computed(() => {
+  return allStatistics.value?.big_burn_details;
+});
+
+const burnDetails = ref([]);
+
+watch(allStatistics, () => {
+  burnDetails.value = isChecked.value ? burnDetailsOriginal.value : allStatistics.value?.burn_details || [];
+});
+
+const isChecked = ref(true);
+const checkboxAction = () => {
+  isChecked.value = !isChecked.value
+  if (isChecked.value) {
+    burnDetails.value = burnDetailsOriginal.value;
+  } else {
+    burnDetails.value = allStatistics.value?.burn_details;
+  }
+}
 onMounted(async () => {
   setCookie("timezone", new Date().getTimezoneOffset(), 360);
   allStatistics.value = await getBurnStatistics()
@@ -394,7 +421,8 @@ useHead({
     {property: 'og:image', content: meta.image},
     {name: 'twitter:title', content: meta.title},
     {name: 'twitter:description', content: meta.description},
-    {name: 'twitter:image', content: meta.image}
+    {name: 'twitter:image', content: meta.image},
+    {property: 'twitter:card', content: "summary_large_image"}
   ],
 })
 </script>

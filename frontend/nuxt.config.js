@@ -38,5 +38,16 @@ export default defineNuxtConfig({
     // }
     detectBrowserLanguage: false
 
+  },
+  vite:{
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+          @import "@/assets/styles/vars.scss";
+        `
+        }
+      }
+    }
   }
 })
