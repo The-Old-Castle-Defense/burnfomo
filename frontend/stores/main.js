@@ -1,14 +1,15 @@
 import { defineStore } from "pinia";
 import Web3 from "web3";
+import languages from "~/src/multiLang.config.json";
 
 export const useMain = defineStore("main", () => {
 
   const FOMOContractAddress = "0xa7ea9d5d4d4c7cF7dbde5871E6D108603C6942a5";
   const BURNAccAddress = "0x44038cb60e83c45696324B0791B841A4dC844041"
-
   const state = reactive({
     fetchRateLastUpdate: 0,
     burgerIsActive: false,
+    selectedLanguage: languages[0]
   })
 
   const erc20Abi = [
@@ -219,6 +220,7 @@ export const useMain = defineStore("main", () => {
     FOMOContractAddress,
     getFOMORate,
     setCookie,
+    getCookie,
     DateToRead,
     formatNumberToString,
     cropText,

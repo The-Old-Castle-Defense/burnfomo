@@ -6,8 +6,9 @@
         <div class="header__right-side">
           <HeaderNav class="mobile-hidden"/>
           <BuyFomoButton/>
-          <Burger/>
           <HeaderMobileMenu/>
+          <Languages/>
+          <Burger/>
         </div>
       </div>
     </div>
@@ -18,6 +19,7 @@
 
 import Burger from "~/components/UIComponents/Burger.vue";
 import HeaderMobileMenu from "~/components/UIComponents/HeaderMobileMenu.vue";
+import Languages from "~/components/UIComponents/Languages.vue";
 </script>
 
 <style lang="scss">
@@ -35,7 +37,7 @@ header.header-wrapper{
 .header__right-side{
   gap: 30px;
 }
-@media (max-width: 400px) {
+@media (max-width: 767px) {
   .header__right-side{
     gap: 10px;
   }

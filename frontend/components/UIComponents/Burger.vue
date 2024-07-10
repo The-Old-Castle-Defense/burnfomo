@@ -14,6 +14,10 @@ const {state, toggleBurger} = useMain();
 </script>
 
 <style lang="scss">
+.burger{
+  display: none;
+}
+
 @media (max-width: 767px) {
   .burger {
     width: 30px;

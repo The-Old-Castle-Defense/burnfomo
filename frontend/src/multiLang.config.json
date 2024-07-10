@@ -1,0 +1,8 @@
+[
+  { "code": "en", "iso": "en-US", "file": "en.json", "name": "English", "image": "english.svg" },
+  { "code": "ru", "iso": "ru-RU", "file": "ru.json", "name": "Русский", "image": "russia.svg" },
+  { "code": "ja", "iso": "ja-JP", "file": "ja.json", "name": "日本国", "image": "japan.svg" },
+  { "code": "zh", "iso": "zh-CN", "file": "zh.json", "name": "中国", "image": "china.svg" },
+  { "code": "pt", "iso": "pt-PT", "file": "pt.json", "name": "Português", "image": "portugal.svg" },
+  { "code": "ko", "iso": "ko-KR", "file": "ko.json", "name": "대한민국 大韓民國", "image": "south_korea.svg" }
+]

@@ -1,10 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 const publicWebUrl = "http://localhost:3000/";
-
-const locales = [
-  { code: 'en', iso: 'en-US', file: 'en.json' }
-]
+import languages from './src/multiLang.config.json';
+const defaultLocale = "en"
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -22,22 +20,24 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     '@nuxtjs/i18n'
   ],
+  plugins: [
+    '~/plugins/click-outside.js'
+  ],
   i18n: {
     legacy: false,
-    defaultLocale: "en",
-    locale: "en",
+    defaultLocale: defaultLocale,
+    locale: defaultLocale,
     lazy: true,
     langDir: "locales/",
-    locales: locales,
+    locales: languages,
     strategy: "no_prefix",
-    // detectBrowserLanguage: {
-    //   useCookie: true,
-    //   cookieKey: 'i18n_redirected',
-    //   alwaysRedirect: false,
-    //   fallbackLocale: "en"
-    // }
-    detectBrowserLanguage: false
-
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: false,
+      fallbackLocale: defaultLocale,
+      redirectOn: 'root',
+    }
   },
   vite:{
     css: {

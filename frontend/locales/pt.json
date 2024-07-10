@@ -1,0 +1,95 @@
+{
+  "header": {
+    "faq": "FAQs",
+    "game": "Queimar $FOMO"
+  },
+  "total_burned": {
+    "title": "Redução total do fornecimento de $FOMO",
+    "body": "{totalBurnValue} tokens $FOMO entraram no vazio e nunca mais voltarão ao fornecimento. O valor combinado de todos os tokens no momento da queima totalizou ${totalBurnValueInUSD}. Tamanho médio da queima: {average_burn_size} por $FOMO."
+  },
+  "rate": {
+    "title": "Preço do $FOMO",
+    "last_updated": "Última atualização"
+  },
+  "latest_burn_details": {
+    "title": "Detalhes da última queima",
+    "subtitle": "A última queima aconteceu em",
+    "body": "Na queima mais recente, um total de {totalTokensBurned} tokens $FOMO foram queimados. No momento desta queima, o valor cumulativo dos $FOMO queimados foi $${totalTokensBurnedUSD}.",
+    "body2": "Esta queima foi desencadeada por"
+  },
+  "line_chart": {
+    "title": "Fornecimento de $FOMO ao longo do tempo"
+  },
+  "burn_details": {
+    "title" : "Detalhes da queima",
+    "table": {
+      "title_1": "Tokens queimados",
+      "title_3": "Detalhes da transação",
+      "title_4": "Queima desencadeada por"
+    }
+  },
+  "top_5_burn": {
+    "title": "Top 5 queimas por carteiras",
+    "table": {
+      "title_2": "Queimador",
+      "title_3": "Quantidade",
+      "title_4": "Total em USD",
+      "title_5": "Total $FOMO"
+    }
+  },
+  "fomo_burn_emotion": {
+    "make_happy": "Fazer feliz",
+    "make_happy_board_part_1": "Você pode",
+    "make_happy_board_part_2": "queimar $FOMO dentro do Jogo",
+    "make_happy_board_part_3": "para fazer $FOMO mais feliz e invocar crescimento eterno, ou simplesmente por diversão"
+  },
+  "upcoming_buybacks": {
+    "title": "Próximas recompras"
+  },
+  "upcoming_burns": {
+    "title": "Próximas queimas"
+  },
+  "buy_fomo": "Comprar $FOMO",
+  "burn_statistics": {
+    "title": "Estatísticas de Queima",
+    "board_1": {
+      "title": "Maior Queima"
+    },
+    "board_2": {
+      "title": "Queimas até a data",
+      "subtitle": "Número de queimas"
+    },
+    "board_3": {
+      "title": "Tamanho Médio da Queima"
+    }
+  },
+  "faq": {
+    "title": "FAQs",
+    "questions": [
+      {
+        "question": "Por que os tokens $FOMO são queimados?",
+        "answer": "Queimar tokens $FOMO ajuda a reduzir o fornecimento total, o que pode aumentar o valor dos tokens restantes e beneficiar todos os detentores."
+      },
+      {
+        "question": "Quais são as fontes dos tokens que são queimados?",
+        "answer": "Os tokens são queimados de várias fontes, incluindo taxas de transação, recompensas de staking e tokens não utilizados."
+      },
+      {
+        "question": "Como ocorrem as queimas de tokens $FOMO?",
+        "answer": "As queimas ocorrem chamando a função burn() no Contrato de Queima $FOMO, que remove permanentemente a quantidade especificada de tokens da circulação."
+      },
+      {
+        "question": "Como a queima de tokens $FOMO beneficia a comunidade?",
+        "answer": "Queimar tokens reduz o fornecimento, o que pode aumentar a demanda e o valor, beneficiando os detentores de tokens e apoiando uma economia mais saudável."
+      },
+      {
+        "question": "As queimas de tokens $FOMO são um evento regular?",
+        "answer": "Sim, as queimas de tokens $FOMO são programadas regularmente para manter um equilíbrio entre oferta e demanda."
+      },
+      {
+        "question": "Que efeitos as queimas de tokens $FOMO têm no mercado?",
+        "answer": "Queimar tokens geralmente leva a uma diminuição na oferta, o que pode aumentar o preço se a demanda permanecer constante ou aumentar."
+      }
+    ]
+  }
+}

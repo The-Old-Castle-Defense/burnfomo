@@ -1,0 +1,95 @@
+{
+  "header": {
+    "faq": "FAQs",
+    "game": "$FOMO 소각하기"
+  },
+  "total_burned": {
+    "title": "$FOMO 공급량의 총 감소",
+    "body": "{totalBurnValue} $FOMO 토큰이 소각되어 다시 공급되지 않을 것입니다. 소각 시 모든 토큰의 총 가치는 ${totalBurnValueInUSD}입니다. 평균 소각 크기: $FOMO 당 {average_burn_size}."
+  },
+  "rate": {
+    "title": "$FOMO 가격",
+    "last_updated": "마지막 업데이트"
+  },
+  "latest_burn_details": {
+    "title": "최근 소각 세부 사항",
+    "subtitle": "마지막 소각이 발생한 날짜",
+    "body": "가장 최근의 소각에서 총 {totalTokensBurned} $FOMO 토큰이 소각되었습니다. 이 소각 시점에서 소각된 $FOMO의 누적 가치는 $${totalTokensBurnedUSD}입니다.",
+    "body2": "이 소각은 다음에 의해 트리거되었습니다"
+  },
+  "line_chart": {
+    "title": "시간 경과에 따른 $FOMO 공급"
+  },
+  "burn_details": {
+    "title" : "소각 세부 사항",
+    "table": {
+      "title_1": "소각된 토큰",
+      "title_3": "거래 세부 사항",
+      "title_4": "소각을 트리거한 사람"
+    }
+  },
+  "top_5_burn": {
+    "title": "상위 5개 지갑 소각",
+    "table": {
+      "title_2": "소각자",
+      "title_3": "수량",
+      "title_4": "총 USD",
+      "title_5": "총 $FOMO"
+    }
+  },
+  "fomo_burn_emotion": {
+    "make_happy": "행복하게 만들기",
+    "make_happy_board_part_1": "당신은",
+    "make_happy_board_part_2": "게임 내에서 $FOMO를 소각할 수 있습니다",
+    "make_happy_board_part_3": "$FOMO를 더 행복하게 만들고 영원한 성장을 촉진하거나 단순히 재미를 위해"
+  },
+  "upcoming_buybacks": {
+    "title": "예정된 바이백"
+  },
+  "upcoming_burns": {
+    "title": "예정된 소각"
+  },
+  "buy_fomo": "$FOMO 구매하기",
+  "burn_statistics": {
+    "title": "소각 통계",
+    "board_1": {
+      "title": "최대 소각"
+    },
+    "board_2": {
+      "title": "날짜별 소각",
+      "subtitle": "소각 횟수"
+    },
+    "board_3": {
+      "title": "평균 소각 크기"
+    }
+  },
+  "faq": {
+    "title": "FAQs",
+    "questions": [
+      {
+        "question": "왜 $FOMO 토큰을 소각하나요?",
+        "answer": "$FOMO 토큰을 소각하면 총 공급량이 감소하여 남아있는 토큰의 가치를 높일 수 있고, 이는 모든 보유자에게 이익이 됩니다."
+      },
+      {
+        "question": "소각되는 토큰의 출처는 무엇인가요?",
+        "answer": "토큰은 거래 수수료, 스테이킹 보상 및 사용되지 않은 토큰을 포함한 다양한 출처에서 소각됩니다."
+      },
+      {
+        "question": "$FOMO 토큰 소각은 어떻게 이루어지나요?",
+        "answer": "소각은 $FOMO 소각 계약에서 burn() 함수를 호출하여 이루어지며, 이는 지정된 수량의 토큰을 영구히 순환에서 제거합니다."
+      },
+      {
+        "question": "$FOMO 토큰 소각은 커뮤니티에 어떤 이익이 있나요?",
+        "answer": "토큰을 소각하면 공급이 줄어들어 수요와 가치를 높일 수 있으며, 이는 토큰 보유자에게 이익이 되고 건강한 경제를 지원합니다."
+      },
+      {
+        "question": "$FOMO 토큰 소각은 정기적으로 발생하나요?",
+        "answer": "네, $FOMO 토큰 소각은 공급과 수요의 균형을 유지하기 위해 정기적으로 예정되어 있습니다."
+      },
+      {
+        "question": "$FOMO 토큰 소각은 시장에 어떤 영향을 미치나요?",
+        "answer": "토큰을 소각하면 일반적으로 공급이 감소하여, 수요가 일정하거나 증가할 경우 가격을 상승시킬 수 있습니다."
+      }
+    ]
+  }
+}

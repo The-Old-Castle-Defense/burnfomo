@@ -1,6 +1,6 @@
 <template>
   <a
-    class="btn btn--transparent"
+    class="btn btn--transparent btn--buy-fomo"
     href="https://app.debridge.finance/deswap?address=&inputChain=1&outputChain=8453&inputCurrency=&outputCurrency=0xa7ea9d5d4d4c7cF7dbde5871E6D108603C6942a5&dlnMode=simple"
     target="_blank"
   >
@@ -35,6 +35,12 @@ const {t} = useI18n()
         background: $rose-color--hover;
       }
     }
+  }
+}
+
+@media (max-width: 567px){
+  .btn--buy-fomo {
+    padding: 12px 12px;
   }
 }
 </style>

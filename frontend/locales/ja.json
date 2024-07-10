@@ -1,0 +1,95 @@
+{
+  "header": {
+    "faq": "FAQs",
+    "game": "$FOMOを燃やす"
+  },
+  "total_burned": {
+    "title": "$FOMO供給量の総削減",
+    "body": "{totalBurnValue} $FOMOトークンが燃やされ、供給には二度と戻りません。燃焼時の全トークンの総価値は${totalBurnValueInUSD}でした。平均燃焼サイズ: $FOMOあたり{average_burn_size}。"
+  },
+  "rate": {
+    "title": "$FOMOの価格",
+    "last_updated": "最終更新"
+  },
+  "latest_burn_details": {
+    "title": "最新の燃焼の詳細",
+    "subtitle": "最後の燃焼は",
+    "body": "最新の燃焼で、合計{totalTokensBurned} $FOMOトークンが燃やされました。この燃焼時点で、燃やされた$FOMOの累計価値は$${totalTokensBurnedUSD}でした。",
+    "body2": "この燃焼は以下によりトリガーされました"
+  },
+  "line_chart": {
+    "title": "時間経過による$FOMOの供給"
+  },
+  "burn_details": {
+    "title" : "燃焼の詳細",
+    "table": {
+      "title_1": "燃やされたトークン",
+      "title_3": "トランザクションの詳細",
+      "title_4": "燃焼のトリガー"
+    }
+  },
+  "top_5_burn": {
+    "title": "ウォレットによるトップ5の燃焼",
+    "table": {
+      "title_2": "燃焼者",
+      "title_3": "数",
+      "title_4": "総額USD",
+      "title_5": "総額$FOMO"
+    }
+  },
+  "fomo_burn_emotion": {
+    "make_happy": "幸せにする",
+    "make_happy_board_part_1": "あなたは",
+    "make_happy_board_part_2": "ゲーム内で$FOMOを燃やすことができます",
+    "make_happy_board_part_3": "$FOMOをより幸せにし、永遠の成長を呼び起こすために、または単に楽しみのために"
+  },
+  "upcoming_buybacks": {
+    "title": "今後の買い戻し"
+  },
+  "upcoming_burns": {
+    "title": "今後の燃焼"
+  },
+  "buy_fomo": "$FOMOを購入する",
+  "burn_statistics": {
+    "title": "燃焼の統計",
+    "board_1": {
+      "title": "最大の燃焼"
+    },
+    "board_2": {
+      "title": "これまでの燃焼",
+      "subtitle": "燃焼の回数"
+    },
+    "board_3": {
+      "title": "平均燃焼サイズ"
+    }
+  },
+  "faq": {
+    "title": "FAQs",
+    "questions": [
+      {
+        "question": "なぜ$FOMOトークンは燃やされるのですか？",
+        "answer": "$FOMOトークンを燃やすことは、供給量を減少させ、残りのトークンの価値を高め、すべての保有者に利益をもたらすことができます。"
+      },
+      {
+        "question": "燃やされるトークンの出所は何ですか？",
+        "answer": "トークンは、トランザクション手数料、ステーキング報酬、未使用のトークンなど、さまざまな出所から燃やされます。"
+      },
+      {
+        "question": "$FOMOトークンの燃焼はどのように行われますか？",
+        "answer": "燃焼は、$FOMO Burn Contractのburn()関数を呼び出すことによって行われ、指定された量のトークンを永久に循環から取り除きます。"
+      },
+      {
+        "question": "$FOMOトークンを燃やすことはコミュニティにどのように利益をもたらしますか？",
+        "answer": "トークンを燃やすことは供給を減少させ、需要と価値を高めることができ、トークン保有者に利益をもたらし、より健全な経済をサポートします。"
+      },
+      {
+        "question": "$FOMOトークンの燃焼は定期的に行われますか？",
+        "answer": "はい、$FOMOトークンの燃焼は、供給と需要のバランスを維持するために定期的にスケジュールされています。"
+      },
+      {
+        "question": "$FOMOトークンの燃焼は市場にどのような影響を与えますか？",
+        "answer": "トークンを燃やすことは通常、供給の減少を引き起こし、需要が一定または増加した場合、価格を押し上げることができます。"
+      }
+    ]
+  }
+}
